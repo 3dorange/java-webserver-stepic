@@ -2,6 +2,7 @@ package accounts;
 
 import dbService.DBException;
 import dbService.DBService;
+import dbService.DBServiceImpl;
 import dbService.dataSets.UsersDataSet;
 
 import java.util.HashMap;
@@ -15,10 +16,10 @@ public class AccountService {
     private final Map<String, UserProfile> sessionIdToProfile;
     private DBService dbService;
 
-    public AccountService() {
+    public AccountService(DBService dbService) {
         loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
-        dbService = new DBService();
+        this.dbService = dbService;
     }
 
     public void addNewUser(UserProfile userProfile) throws DBException {
